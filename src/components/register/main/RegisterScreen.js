@@ -7,7 +7,7 @@ export default function Registercreen() {
       <Content>
         <h1>ÔMEGA GAMES</h1>
         <Form />
-        <H2 to="/">Já tem uma conta? Faça login!</H2>
+        <H2 to="/login">Já tem uma conta? Faça login!</H2>
       </Content>
     </Container>
   )
