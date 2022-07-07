@@ -27,8 +27,14 @@ export default function HomeScreen() {
         <Content>
           {games === undefined
             ? 'loading'
-            : games.map(({ url, price, name }, index) => (
-                <Games name={name} image={url} price={price} key={index} />
+            : games.map(({ url, price, name, _id }, index) => (
+                <Games
+                  name={name}
+                  url={url}
+                  price={price}
+                  _id={_id}
+                  key={index}
+                />
               ))}
         </Content>
       </App>

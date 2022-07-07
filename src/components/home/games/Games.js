@@ -3,7 +3,7 @@ import { priceBRL } from '../../../shared/functions'
 import { Container } from './styles'
 import Game from '../game/Game'
 
-export default function Games({ image, price, name }) {
+export default function Games({ url, price, name, _id }) {
   const [game, setGame] = useState(undefined)
 
   function gameContrast() {
@@ -14,8 +14,8 @@ export default function Games({ image, price, name }) {
   return (
     <>
       {gameContrast()}
-      <Container onClick={() => setGame({ image, price, name })}>
-        <img src={image} alt="game" />
+      <Container onClick={() => setGame({ url, price, name, _id })}>
+        <img src={url} alt="game" />
         <p>R$ {priceBRL(price)}</p>
       </Container>
     </>

@@ -1,14 +1,31 @@
 import { useContext } from 'react'
 import { UserContext } from '../../../context/userContext'
+import { post } from 'axios'
 import { priceBRL } from '../../../shared/functions'
 import { Container, Content } from './styles'
 
 export default function Game({ game, setGame }) {
-  const { name, image, price } = game
+  const { name, url, price, _id } = game
   const { user } = useContext(UserContext)
 
   function addCart() {
-    user.cart.push({ name, image, price })
+    user.cart.push({ name, url, price, _id })
+
+    const URL = process.env.REACT_APP_API_URL
+
+    const body = game
+
+    const config = { headers: { Authorization: `Bearer ${user.token}` } }
+
+    const promise = post(`${URL}/cart/${_id}`, body, config)
+
+    promise
+      .then(() => {
+        console.log('deu certo')
+      })
+      .catch(() => {
+        console.log('deu errado')
+      })
 
     setGame(undefined)
   }
@@ -18,7 +35,7 @@ export default function Game({ game, setGame }) {
       <Content>
         <div>
           <h1>{name}</h1>
-          <img src={image} alt="game" />
+          <img src={url} alt="game" />
           <h2>R$ {priceBRL(price)}</h2>
         </div>
         <div>
