@@ -1,58 +1,62 @@
-import axios from "axios";
-import styled from "styled-components";
-import { Link, useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
-import UserContext from "../../context/UserContext";
-import Button from "../button/Button";
-import Logo from "../logo/Logo";
-import { InputBox } from "../register/form/styles";
+import axios from 'axios'
+import styled from 'styled-components'
+import { Link, useNavigate } from 'react-router-dom'
+import { useContext, useState } from 'react'
+import { UserContext } from '../../context/auth'
+import Button from '../button/Button'
+import Logo from '../logo/Logo'
+import { InputBox } from '../register/form/styles'
 import {
   spinnerLoading,
   disableInput,
   showOrHideIcon,
-  showOrHidePassword,
-} from "../register/form/functions";
+  showOrHidePassword
+} from '../register/form/functions'
 
 function Login() {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(false)
 
-  const { user, setUser } = useContext(UserContext);
-  const [loading, setLoading] = useState(false);
+  const { user, setUser } = useContext(UserContext)
+  const [loading, setLoading] = useState(false)
 
-  if (user !== null) {
-    navigate("/login");
-  }
+  // if (user !== null) {
+  //   navigate('/login')
+  // }
 
-  const URL = `${process.env.REACT_APP_API_URL}/login`;
+  const URL = `${process.env.REACT_APP_API_URL}/login`
 
   const [userLogin, setUserLogin] = useState({
-    email: "",
-    password: "",
-  });
+    email: '',
+    password: ''
+  })
 
   function login(e) {
-    e.preventDefault();
-    setLoading(true);
+    e.preventDefault()
+    setLoading(true)
     const promise = axios.post(URL, {
-      ...userLogin,
-    });
+      ...userLogin
+    })
 
-    promise.then((response) => {
-      setUser(response.data);
-      setLoading(true);
-      navigate("/home");
-    });
+    promise.then(response => {
+      setUser(response.data)
+      setLoading(true)
+      navigate('/home')
+    })
 
-    promise.catch((err) => {
-      console.log(err);
-      setLoading(false);
-    });
+    promise.catch(err => {
+      console.log(err)
+      setLoading(false)
+    })
   }
 
-  function ChangeInput(e) {
-    setUserLogin({ ...userLogin, [e.target.name]: e.target.value });
+  function ChangeInputEmail(e) {
+    setUserLogin({ ...userLogin, email: e })
+  }
+
+  function ChangeInputPassword(e) {
+    setUserLogin({ ...userLogin, password: e })
   }
 
   return (
@@ -66,7 +70,7 @@ function Login() {
           placeholder="E-mail"
           value={userLogin.email}
           name="email"
-          onChange={ChangeInput}
+          onChange={e => ChangeInputEmail(e.target.value)}
         />
         <input
           type="password"
@@ -74,11 +78,11 @@ function Login() {
           placeholder="Senha"
           value={userLogin.password}
           name="password"
-          onChange={ChangeInput}
+          onChange={e => ChangeInputPassword(e.target.value)}
         />
 
         {loading === false ? (
-          <Button type={"submit"} text={"Entrar"} destiny={""} action={login} />
+          <Button type={'submit'} text={'Entrar'} destiny={''} action={login} />
         ) : (
           <div>{spinnerLoading()}</div>
         )}
@@ -88,7 +92,7 @@ function Login() {
         <p>Não possui conta? Cadastre-se!</p>
       </Link>
     </Container>
-  );
+  )
 }
 
 const Container = styled.div`
@@ -116,7 +120,7 @@ const Container = styled.div`
 
     background: #ffffff;
 
-    font-family: "Raleway";
+    font-family: 'Raleway';
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
@@ -131,14 +135,14 @@ const Container = styled.div`
 
   .button {
     width: 80%;
-    heigth: 45px;
+    height: 45px;
     padding: 10px;
     text-align: center;
 
     background: #a328d6;
     border-radius: 5px;
 
-    font-family: "Raleway";
+    font-family: 'Raleway';
     font-style: normal;
     font-weight: 700;
     font-size: 20px;
@@ -150,7 +154,7 @@ const Container = styled.div`
   p {
     margin-top: 20px;
 
-    font-family: "Raleway";
+    font-family: 'Raleway';
     font-style: normal;
     font-weight: 700;
     font-size: 15px;
@@ -158,7 +162,7 @@ const Container = styled.div`
 
     color: #ffffff;
   }
-`;
+`
 
 const Form = styled.form`
   width: 100%;
@@ -168,10 +172,10 @@ const Form = styled.form`
   flex-direction: column;
 
   input::placeholder {
-    font: normal 400 20px "Raleway", sans-serif;
+    font: normal 400 20px 'Raleway', sans-serif;
     color: #000000;
     line-height: 23px;
   }
-`;
+`
 
-export default Login;
+export default Login

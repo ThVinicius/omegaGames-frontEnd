@@ -1,25 +1,23 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import RegisterScreen from "./register/main/RegisterScreen";
-import ResetCSS from "../assets/css/reset";
-import GlobalStyle from "../assets/css/global";
-import Login from "./login/Login";
-import { useState } from "react";
-import UserContext from "../context/UserContext";
-
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { AuthProvider } from '../context/auth'
+import RegisterScreen from './register/main/RegisterScreen'
+import ResetCSS from '../assets/css/reset'
+import GlobalStyle from '../assets/css/global'
+import Login from './login/Login'
+import Home from './home/Home'
 
 export default function App() {
-  const [user, setUser] = useState(null);
-
   return (
-    <UserContext.Provider value={{ user, setUser }}>
-      <BrowserRouter>
-        <ResetCSS />
-        <GlobalStyle />
+    <BrowserRouter>
+      <ResetCSS />
+      <GlobalStyle />
+      <AuthProvider>
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<RegisterScreen />} />
+          <Route path="/" element={<Home />} />
         </Routes>
-      </BrowserRouter>
-    </UserContext.Provider>
-  );
+      </AuthProvider>
+    </BrowserRouter>
+  )
 }
