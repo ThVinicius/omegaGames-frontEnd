@@ -1,4 +1,10 @@
-import { render } from 'react-dom'
-import App from './components/App'
+import { render } from "react-dom";
+import App from "./components/App";
+import { AuthProvider } from "./context/authContext";
 
-render(<App />, document.querySelector('.root'))
+render(
+  <AuthProvider>
+    <App />
+  </AuthProvider>,
+  document.querySelector(".root")
+);

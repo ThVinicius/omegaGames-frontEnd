@@ -5,26 +5,27 @@ import { useContext, useState } from "react";
 import UserContext from "../../context/UserContext";
 import Button from "../button/Button";
 import Logo from "../logo/Logo";
-import { InputBox } from "../register/form/styles";
 import {
   spinnerLoading,
   disableInput,
   showOrHideIcon,
   showOrHidePassword,
 } from "../register/form/functions";
+import { useAuth } from "../../context/authContext";
 
 function Login() {
   const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
 
-  const { user, setUser } = useContext(UserContext);
+  const { user, setUser } = useAuth();
   const [loading, setLoading] = useState(false);
 
-  if (user !== null) {
-    navigate("/login");
-  }
-
+  /* if (user !== null) {
+    //navigate("/");
+    console.log('ok')
+  } */
+  
   const URL = `${process.env.REACT_APP_API_URL}/login`;
 
   const [userLogin, setUserLogin] = useState({
@@ -34,19 +35,25 @@ function Login() {
 
   function login(e) {
     e.preventDefault();
-    setLoading(true);
+    setLoading(false);
     const promise = axios.post(URL, {
       ...userLogin,
     });
 
     promise.then((response) => {
       setUser(response.data);
+      console.log(response.data)
       setLoading(true);
-      navigate("/home");
+
+      const person = {
+        name: response.data.name,
+        email: response.data.email,
+        token: response.data.token,
+      };
+      localStorage.setItem("userLogged", JSON.stringify(person));
     });
 
     promise.catch((err) => {
-      console.log(err);
       setLoading(false);
     });
   }
@@ -80,7 +87,7 @@ function Login() {
         {loading === false ? (
           <Button type={"submit"} text={"Entrar"} destiny={""} action={login} />
         ) : (
-          <div>{spinnerLoading()}</div>
+          "carregando"
         )}
       </Form>
 
@@ -131,7 +138,7 @@ const Container = styled.div`
 
   .button {
     width: 80%;
-    heigth: 45px;
+    height: 45px;
     padding: 10px;
     text-align: center;
 

@@ -6,12 +6,10 @@ import Login from "./login/Login";
 import { useState } from "react";
 import UserContext from "../context/UserContext";
 
-
 export default function App() {
-  const [user, setUser] = useState(null);
+ // const [user, setUser] = useState(null);
 
   return (
-    <UserContext.Provider value={{ user, setUser }}>
       <BrowserRouter>
         <ResetCSS />
         <GlobalStyle />
@@ -20,6 +18,5 @@ export default function App() {
           <Route path="/register" element={<RegisterScreen />} />
         </Routes>
       </BrowserRouter>
-    </UserContext.Provider>
   );
 }
