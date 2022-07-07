@@ -4,17 +4,19 @@ const Container = styled.div`
   width: 100vw;
   height: 100vh;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 `
 
-const Content = styled.div`
+const App = styled.div`
   width: 375px;
   height: 100vh;
   background-color: #ffffff;
+  position: relative;
 `
 const Header = styled.header`
   width: 100%;
-  height: 100px;
+  height: 15vh;
   padding: 0 10px;
   background-color: #1156be;
   display: flex;
@@ -30,4 +32,15 @@ const Header = styled.header`
   }
 `
 
-export { Container, Content, Header }
+const Content = styled.div`
+  width: 375px;
+  height: 85vh;
+  overflow-y: auto;
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  background-color: #f2f3f4;
+`
+
+export { Container, App, Header, Content }
