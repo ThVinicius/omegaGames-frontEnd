@@ -76,6 +76,22 @@ const Content = styled.div`
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     color: #ffffff;
   }
+
+  h5 {
+    font: normal 700 15px 'Raleway', sans-serif;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #ff0000;
+    color: #ffffff;
+  }
+
+  h6 {
+    font: normal 700 15px 'Raleway', sans-serif;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #9400d3;
+    color: #ffffff;
+  }
 `;
 
 export { Container, Content };
