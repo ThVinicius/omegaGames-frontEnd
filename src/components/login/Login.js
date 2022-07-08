@@ -2,30 +2,28 @@ import axios from "axios";
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
-import UserContext from "../../context/UserContext";
+import { UserContext } from "../../context/auth";
 import Button from "../button/Button";
 import Logo from "../logo/Logo";
+import { InputBox } from "../register/form/styles";
 import {
   spinnerLoading,
   disableInput,
   showOrHideIcon,
   showOrHidePassword,
 } from "../register/form/functions";
-import { useAuth } from "../../context/authContext";
 
 function Login() {
   const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
-
-  const { user, setUser } = useAuth();
+  const { user, setUser } = useContext(UserContext);
   const [loading, setLoading] = useState(false);
 
-  /* if (user !== null) {
-    //navigate("/");
-    console.log('ok')
-  } */
-  
+  // if (user !== null) {
+  //   navigate('/login')
+  // }
+
   const URL = `${process.env.REACT_APP_API_URL}/login`;
 
   const [userLogin, setUserLogin] = useState({
@@ -35,31 +33,29 @@ function Login() {
 
   function login(e) {
     e.preventDefault();
-    setLoading(false);
+    setLoading(true);
     const promise = axios.post(URL, {
       ...userLogin,
     });
 
     promise.then((response) => {
       setUser(response.data);
-      console.log(response.data)
       setLoading(true);
-
-      const person = {
-        name: response.data.name,
-        email: response.data.email,
-        token: response.data.token,
-      };
-      localStorage.setItem("userLogged", JSON.stringify(person));
+      navigate("/home");
     });
 
     promise.catch((err) => {
+      console.log(err);
       setLoading(false);
     });
   }
 
-  function ChangeInput(e) {
-    setUserLogin({ ...userLogin, [e.target.name]: e.target.value });
+  function ChangeInputEmail(e) {
+    setUserLogin({ ...userLogin, email: e });
+  }
+
+  function ChangeInputPassword(e) {
+    setUserLogin({ ...userLogin, password: e });
   }
 
   return (
@@ -73,7 +69,7 @@ function Login() {
           placeholder="E-mail"
           value={userLogin.email}
           name="email"
-          onChange={ChangeInput}
+          onChange={(e) => ChangeInputEmail(e.target.value)}
         />
         <input
           type="password"
@@ -81,7 +77,7 @@ function Login() {
           placeholder="Senha"
           value={userLogin.password}
           name="password"
-          onChange={ChangeInput}
+          onChange={(e) => ChangeInputPassword(e.target.value)}
         />
 
         {loading === false ? (
