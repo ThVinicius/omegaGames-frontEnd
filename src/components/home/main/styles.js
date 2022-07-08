@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const Container = styled.div`
   width: 100vw;
@@ -28,7 +28,7 @@ const Header = styled.header`
   }
 
   h1 {
-    font: normal 400 32px 'Saira Stencil One', cursive;
+    font: normal 400 32px "Saira Stencil One", cursive;
   }
 `;
 

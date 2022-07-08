@@ -1,9 +1,9 @@
-import { useContext } from 'react';
-import { UserContext } from '../../../context/userContext';
-import { post } from 'axios';
-import { priceBRL } from '../../../shared/functions';
-import { verifyGame } from './functions';
-import { Container, Content } from './styles';
+import { useContext } from "react";
+import { UserContext } from "../../../context/userContext";
+import { post } from "axios";
+import { priceBRL } from "../../../shared/functions";
+import { verifyGame } from "./functions";
+import { Container, Content } from "./styles";
 
 export default function Game({ game, setGame }) {
   const { name, url, price, _id } = game;
@@ -23,10 +23,10 @@ export default function Game({ game, setGame }) {
 
       promise
         .then(() => {
-          console.log('deu certo');
+          console.log("deu certo");
         })
         .catch(() => {
-          console.log('deu errado');
+          console.log("deu errado");
         });
     }
 

@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   width: 100vw;
@@ -18,7 +18,7 @@ const Content = styled.div`
   justify-content: center;
 
   h1 {
-    font: normal 400 32px 'Saira Stencil One', cursive;
+    font: normal 400 32px "Saira Stencil One", cursive;
     line-height: 50px;
     color: #ffffff;
   }
@@ -28,7 +28,7 @@ const Content = styled.div`
   }
 `;
 const H2 = styled(Link)`
-  font: normal 700 15px 'Raleway', sans-serif;
+  font: normal 700 15px "Raleway", sans-serif;
   line-height: 18px;
   color: #ffffff;
 `;

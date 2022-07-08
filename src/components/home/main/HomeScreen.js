@@ -1,8 +1,8 @@
-import { useContext, useEffect, useState } from 'react';
-import { get } from 'axios';
-import { UserContext } from '../../../context/userContext';
-import Games from '../games/Games';
-import { Container, Content, Header, App } from './styles';
+import { useContext, useEffect, useState } from "react";
+import { get } from "axios";
+import { UserContext } from "../../../context/userContext";
+import Games from "../games/Games";
+import { Container, Content, Header, App } from "./styles";
 
 export default function HomeScreen() {
   const [games, setGames] = useState(undefined);
@@ -15,9 +15,11 @@ export default function HomeScreen() {
 
     setGames(data);
 
-    const token = localStorage.getItem('token');
+    const getToken = localStorage.getItem("token");
 
-    if (token !== null && user.token === undefined) {
+    if (getToken !== null && user.token === undefined) {
+      const token = JSON.parse(getToken);
+
       user.token = token;
     }
 
@@ -45,7 +47,7 @@ export default function HomeScreen() {
         </Header>
         <Content>
           {games === undefined
-            ? 'loading'
+            ? "loading"
             : games.map(({ url, price, name, _id }, index) => (
                 <Games
                   name={name}

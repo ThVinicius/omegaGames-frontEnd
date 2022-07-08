@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { priceBRL } from '../../../shared/functions';
-import { Container } from './styles';
-import Game from '../game/Game';
+import { useState } from "react";
+import { priceBRL } from "../../../shared/functions";
+import { Container } from "./styles";
+import Game from "../game/Game";
 
 export default function Games({ url, price, name, _id }) {
   const [game, setGame] = useState(undefined);

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const Container = styled.form`
   display: flex;
@@ -12,11 +12,11 @@ const Container = styled.form`
     width: 326px;
     height: 58px;
     padding: 0 15px;
-    font: normal 400 20px 'Raleway', sans-serif;
+    font: normal 400 20px "Raleway", sans-serif;
   }
 
   input::placeholder {
-    font: normal 400 20px 'Raleway', sans-serif;
+    font: normal 400 20px "Raleway", sans-serif;
     color: #000000;
     line-height: 23px;
   }
@@ -27,7 +27,7 @@ const Container = styled.form`
     width: 326px;
     height: 46px;
     background-color: #c1d3ee;
-    font: normal 700 20px 'Raleway', sans-serif;
+    font: normal 700 20px "Raleway", sans-serif;
     color: #000000;
     line-height: 23px;
     display: flex;

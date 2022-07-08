@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const Container = styled.div`
   position: absolute;
@@ -33,7 +33,7 @@ const Content = styled.div`
   }
 
   h1 {
-    font: normal 400 22px 'Saira Stencil One', cursive;
+    font: normal 400 22px "Saira Stencil One", cursive;
     color: #ffffff;
     text-align: center;
   }
@@ -47,7 +47,7 @@ const Content = styled.div`
   }
 
   h2 {
-    font: normal 700 15px 'Raleway', sans-serif;
+    font: normal 700 15px "Raleway", sans-serif;
     color: #ffffff;
   }
 
@@ -65,20 +65,20 @@ const Content = styled.div`
   button:first-child {
     background-color: #1156be;
     color: #ffffff;
-    font: normal 700 15px 'Raleway', sans-serif;
+    font: normal 700 15px "Raleway", sans-serif;
   }
 
   button:nth-child(2) {
     padding: 10px;
     border-radius: 5px;
-    font: normal 700 15px 'Raleway', sans-serif;
+    font: normal 700 15px "Raleway", sans-serif;
     background-color: #1a6e05;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     color: #ffffff;
   }
 
   h5 {
-    font: normal 700 15px 'Raleway', sans-serif;
+    font: normal 700 15px "Raleway", sans-serif;
     padding: 10px;
     border-radius: 5px;
     background-color: #ff0000;
@@ -86,7 +86,7 @@ const Content = styled.div`
   }
 
   h6 {
-    font: normal 700 15px 'Raleway', sans-serif;
+    font: normal 700 15px "Raleway", sans-serif;
     padding: 10px;
     border-radius: 5px;
     background-color: #9400d3;
