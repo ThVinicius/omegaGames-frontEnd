@@ -9,7 +9,7 @@ const Container = styled.div`
 `;
 
 const App = styled.div`
-  width: 375px;
+  width: 100vw;
   height: 100vh;
   background-color: #ffffff;
   position: relative;
@@ -24,20 +24,31 @@ const Header = styled.header`
   align-items: center;
 
   ion-icon {
-    font-size: 40px;
+    font-size: 60px;
   }
 
   h1 {
-    font: normal 400 32px "Saira Stencil One", cursive;
+    font: normal 400 52px "Saira Stencil One", cursive;
+  }
+
+  @media (max-width: 420px) {
+    h1 {
+      font: normal 400 32px "Saira Stencil One", cursive;
+    }
+
+    ion-icon {
+      font-size: 40px;
+    }
   }
 `;
 
 const Content = styled.div`
-  width: 375px;
+  width: 100vw;
   height: 85vh;
   overflow-y: auto;
   padding: 20px;
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 7px;
   background-color: #f2f3f4;
