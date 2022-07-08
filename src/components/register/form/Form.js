@@ -1,7 +1,7 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import axios from 'axios'
-import { Container, InputBox } from './styles'
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { Container, InputBox } from './styles';
 import {
   spinnerLoading,
   disableInput,
@@ -9,7 +9,7 @@ import {
   opacityButton,
   showOrHideIcon,
   showOrHidePassword
-} from './functions'
+} from './functions';
 
 export default function Form() {
   const [input, setInput] = useState({
@@ -18,78 +18,78 @@ export default function Form() {
     picture: '',
     password: '',
     confirmPassword: ''
-  })
-  const [loading, setLoading] = useState(false)
-  const [showPassword, setShowPassword] = useState(false)
-  const navigate = useNavigate()
+  });
+  const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
 
   const hanleChangeInputName = e => {
-    setInput({ ...input, name: e })
-  }
+    setInput({ ...input, name: e });
+  };
 
   const hanleChangeInputEmail = e => {
-    setInput({ ...input, email: e })
-  }
+    setInput({ ...input, email: e });
+  };
 
   const hanleChangeInputPicture = e => {
-    setInput({ ...input, picture: e })
-  }
+    setInput({ ...input, picture: e });
+  };
 
   const hanleChangeInputPassword = e => {
-    setInput({ ...input, password: e })
-  }
+    setInput({ ...input, password: e });
+  };
 
   const hanleChangeInputConfirmPassword = e => {
-    setInput({ ...input, confirmPassword: e })
-  }
+    setInput({ ...input, confirmPassword: e });
+  };
 
   const toSend = event => {
-    event.preventDefault()
-    if (loading === true) return
-    setLoading(true)
-    const { name, email, picture, password, confirmPassword } = input
+    event.preventDefault();
+    if (loading === true) return;
+    setLoading(true);
+    const { name, email, picture, password, confirmPassword } = input;
 
     if (password !== confirmPassword) {
-      setLoading(false)
+      setLoading(false);
 
-      alert('As senhas são diferentes!')
-      return
+      alert('As senhas são diferentes!');
+      return;
     }
 
-    const URL = `${process.env.REACT_APP_API_URL}/register`
+    const URL = `${process.env.REACT_APP_API_URL}/register`;
 
-    const toSend = { name, email, picture, password, confirmPassword }
+    const toSend = { name, email, picture, password, confirmPassword };
 
-    const promise = axios.post(URL, toSend)
+    const promise = axios.post(URL, toSend);
 
     promise
       .then(() => {
-        alert('Cadastro realizado com sucesso!')
+        alert('Cadastro realizado com sucesso!');
 
-        navigate('/')
+        navigate('/');
       })
       .catch(res => {
-        setLoading(false)
+        setLoading(false);
         switch (true) {
           case res.response.status === 409:
-            alert('Esse e-mail já está cadastrado!')
-            return
+            alert('Esse e-mail já está cadastrado!');
+            return;
 
           case res.response.status === 400:
             alert(
               'Os dados digitados estão fora do padrão aceito, por favor digite um email válido'
-            )
-            return
+            );
+            return;
 
           case res.response.status === 500:
-            alert(res.message)
-            return
+            alert(res.message);
+            return;
 
           default:
-            break
+            break;
         }
-      })
-  }
+      });
+  };
 
   return (
     <Container
@@ -146,5 +146,5 @@ export default function Form() {
       </InputBox>
       <button type="submit">{spinnerLoading(loading)}</button>
     </Container>
-  )
+  );
 }

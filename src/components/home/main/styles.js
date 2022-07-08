@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 const Container = styled.div`
   width: 100vw;
@@ -6,14 +6,14 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-`
+`;
 
 const App = styled.div`
   width: 375px;
   height: 100vh;
   background-color: #ffffff;
   position: relative;
-`
+`;
 const Header = styled.header`
   width: 100%;
   height: 15vh;
@@ -30,7 +30,7 @@ const Header = styled.header`
   h1 {
     font: normal 400 32px 'Saira Stencil One', cursive;
   }
-`
+`;
 
 const Content = styled.div`
   width: 375px;
@@ -41,6 +41,6 @@ const Content = styled.div`
   flex-wrap: wrap;
   gap: 7px;
   background-color: #f2f3f4;
-`
+`;
 
-export { Container, App, Header, Content }
+export { Container, App, Header, Content };

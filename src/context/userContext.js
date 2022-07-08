@@ -1,15 +1,15 @@
-import { createContext, useState } from 'react'
+import { createContext, useState } from 'react';
 
-const UserContext = createContext({})
+const UserContext = createContext({});
 
 function Provider(props) {
-  const [user, setUser] = useState({ token: undefined, cart: [] })
+  const [user, setUser] = useState({ token: undefined, cart: [] });
 
   return (
     <UserContext.Provider value={{ user, setUser }}>
       {props.children}
     </UserContext.Provider>
-  )
+  );
 }
 
-export { UserContext, Provider }
+export { UserContext, Provider };

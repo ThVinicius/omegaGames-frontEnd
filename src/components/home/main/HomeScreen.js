@@ -1,20 +1,20 @@
-import { useEffect, useState } from 'react'
-import { get } from 'axios'
-import Games from '../games/Games'
-import { Container, Content, Header, App } from './styles'
+import { useEffect, useState } from 'react';
+import { get } from 'axios';
+import Games from '../games/Games';
+import { Container, Content, Header, App } from './styles';
 
 export default function HomeScreen() {
-  const [games, setGames] = useState(undefined)
+  const [games, setGames] = useState(undefined);
 
   useEffect(() => {
-    const URL = process.env.REACT_APP_API_URL
+    const URL = process.env.REACT_APP_API_URL;
 
-    const promise = get(`${URL}/games`)
+    const promise = get(`${URL}/games`);
 
     promise.then(({ data }) => {
-      setGames(data)
-    })
-  }, [])
+      setGames(data);
+    });
+  }, []);
 
   return (
     <Container>
@@ -39,5 +39,5 @@ export default function HomeScreen() {
         </Content>
       </App>
     </Container>
-  )
+  );
 }

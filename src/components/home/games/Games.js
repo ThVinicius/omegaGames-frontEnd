@@ -1,14 +1,14 @@
-import { useState } from 'react'
-import { priceBRL } from '../../../shared/functions'
-import { Container } from './styles'
-import Game from '../game/Game'
+import { useState } from 'react';
+import { priceBRL } from '../../../shared/functions';
+import { Container } from './styles';
+import Game from '../game/Game';
 
 export default function Games({ url, price, name, _id }) {
-  const [game, setGame] = useState(undefined)
+  const [game, setGame] = useState(undefined);
 
   function gameContrast() {
-    if (game === undefined) return
-    return <Game game={game} setGame={setGame} />
+    if (game === undefined) return;
+    return <Game game={game} setGame={setGame} />;
   }
 
   return (
@@ -19,5 +19,5 @@ export default function Games({ url, price, name, _id }) {
         <p>R$ {priceBRL(price)}</p>
       </Container>
     </>
-  )
+  );
 }

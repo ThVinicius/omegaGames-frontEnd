@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 const Container = styled.form`
   display: flex;
@@ -50,7 +50,7 @@ const Container = styled.form`
       width: 87.6vw;
     }
   }
-`
+`;
 
 const InputBox = styled.div`
   width: 326px;
@@ -87,6 +87,6 @@ const InputBox = styled.div`
       width: 75.6vw;
     }
   }
-`
+`;
 
-export { Container, InputBox }
+export { Container, InputBox };

@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 const Container = styled.div`
   width: 106px;
@@ -19,6 +19,6 @@ const Container = styled.div`
     height: 133px;
     border-radius: 10px;
   }
-`
+`;
 
-export { Container }
+export { Container };
