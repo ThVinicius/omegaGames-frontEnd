@@ -2,22 +2,15 @@ import axios from "axios";
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
-import { UserContext } from "../../context/auth";
+import { AuthContext, useAuth, UserContext } from "../../context/auth";
 import Button from "../button/Button";
 import Logo from "../logo/Logo";
-import { InputBox } from "../register/form/styles";
-import {
-  spinnerLoading,
-  disableInput,
-  showOrHideIcon,
-  showOrHidePassword,
-} from "../register/form/functions";
 
 function Login() {
   const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
-  const { user, setUser } = useContext(UserContext);
+  const { user, setUser } = useAuth();
   const [loading, setLoading] = useState(false);
 
   // if (user !== null) {
@@ -39,9 +32,10 @@ function Login() {
     });
 
     promise.then((response) => {
+      console.log(response.data);
       setUser(response.data);
       setLoading(true);
-      navigate("/home");
+      navigate("/");
     });
 
     promise.catch((err) => {

@@ -1,5 +1,5 @@
-import { Container, Content, H2 } from './styles'
-import Form from '../form/Form'
+import { Container, Content, H2 } from './styles';
+import Form from '../form/Form';
 
 export default function Registercreen() {
   return (
@@ -10,5 +10,5 @@ export default function Registercreen() {
         <H2 to="/login">Já tem uma conta? Faça login!</H2>
       </Content>
     </Container>
-  )
+  );
 }

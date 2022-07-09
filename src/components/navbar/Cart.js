@@ -1,11 +1,12 @@
-import { useContext } from "react";
 import styled from "styled-components";
-import { UserContext } from "../../context/auth";
 import { useState } from "react";
+import { useAuth } from "../../context/auth";
 
 function NavBarCart() {
-  const { setNavBar } = useContext(UserContext);
+  //const { setNavBar } = useContext(UserContext);
   const [amount, setAmount] = useState(1);
+
+  const { user, setNavbarCart } = useAuth();
 
   function addAmount() {
     setAmount(amount + 1);
@@ -17,35 +18,37 @@ function NavBarCart() {
   }
 
   return (
-    <Container>
-      <Background onClick={() => setNavBar(false)} />
-      <Content>
-        <Top>
-          <ion-icon name="cart-outline"></ion-icon>
-          <Text>Seus Produtos</Text>
-        </Top>
-        <Cart>
-          <Items>
-            <img src="https://image.api.playstation.com/vulcan/img/rnd/202009/2923/jAT7HjpL49A62bU7hLKXJ96b.png" />
-            <div>
-              <p>Nome do jogo</p>
-              <p>Preço</p>
+    (user === null || user !== null) && (
+      <Container>
+        <Background onClick={() => setNavbarCart(false)} />
+        <Content>
+          <Top>
+            <ion-icon name="cart-outline"></ion-icon>
+            <Text>Seus Produtos</Text>
+          </Top>
+          <Cart>
+            <Items>
+              <img src="https://image.api.playstation.com/vulcan/img/rnd/202009/2923/jAT7HjpL49A62bU7hLKXJ96b.png" />
+              <div>
+                <p>Nome do jogo</p>
+                <p>Preço</p>
 
-              <p>Quantidade</p>
-              <div className="amount">
-                <button onClick={removeAmount}>-</button>
-                <input disabled placeholder={amount} />
-                <button onClick={addAmount}>+</button>
+                <p>Quantidade</p>
+                <div className="amount">
+                  <button onClick={removeAmount}>-</button>
+                  <input disabled placeholder={amount} />
+                  <button onClick={addAmount}>+</button>
+                </div>
+                <Button>Remover</Button>
               </div>
-              <Button>Remover</Button>
-            </div>
-          </Items>
-        </Cart>
-        <Final>
-          <button>Finalizar Compra</button>
-        </Final>
-      </Content>
-    </Container>
+            </Items>
+          </Cart>
+          <Final>
+            <button>Finalizar Compra</button>
+          </Final>
+        </Content>
+      </Container>
+    )
   );
 }
 
@@ -53,6 +56,11 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
+  z-index: 2;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 20;
 `;
 
 const Content = styled.div`
@@ -64,6 +72,10 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 10;
 `;
 
 const Background = styled.div`
@@ -71,6 +83,10 @@ const Background = styled.div`
   height: 100vh;
   background: rgba(217, 217, 217, 0.75);
   opacity: 0.5;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
 `;
 
 const Top = styled.div`

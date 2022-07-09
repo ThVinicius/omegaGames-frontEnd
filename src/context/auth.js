@@ -1,16 +1,35 @@
-import { createContext, useState } from "react";
+import React, { useState } from "react";
 
-const UserContext = createContext({});
+export const AuthContext = React.createContext({});
 
-const AuthProvider = (props) => {
-  const [user, setUser] = useState({ token: undefined });
-  const [navBar, setNavBar] = useState(false);
+export const AuthProvider = (props) => {
+  const [user, setUser] = useState({
+    token: undefined,
+    email: undefined,
+    name: undefined,
+    picture: undefined,
+    cart: [],
+    purchases: [],
+    games: undefined,
+  });
+
+  const [navbarCart, setNavbarCart] = useState(false);
+  const [navbarMenu, setNavbarMenu] = useState(false);
 
   return (
-    <UserContext.Provider value={{ user, setUser, navBar, setNavBar }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        setUser,
+        navbarMenu,
+        setNavbarMenu,
+        navbarCart,
+        setNavbarCart,
+      }}
+    >
       {props.children}
-    </UserContext.Provider>
+    </AuthContext.Provider>
   );
 };
 
-export { UserContext, AuthProvider };
+export const useAuth = () => React.useContext(AuthContext);

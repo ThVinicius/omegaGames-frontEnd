@@ -1,29 +1,39 @@
-import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { UserContext } from "../../context/auth";
+import { useAuth } from "../../context/auth";
 
 function NavBarMenu() {
-  const { setNavBar } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  const { user, setNavbarMenu } = useAuth();
+
+  function exitApp() {
+    setNavbarMenu(false);
+    navigate("/");
+    window.location.reload();
+  }
 
   return (
-    <Container>
-      <Content>
-        <Top>
-          <img src="https://image.api.playstation.com/vulcan/img/rnd/202009/2923/jAT7HjpL49A62bU7hLKXJ96b.png" />
-          <Text>username</Text>
-          <p>Email do user</p>
-        </Top>
-        <Options>
-          <Button>Home</Button>
-          <Button>Minhas compras</Button>
-          <Button>Biblioteca</Button>
-        </Options>
-        <Final>
-          <button>Logout</button>
-        </Final>
-      </Content>
-      <Background onClick={() => setNavBar(false)} />
-    </Container>
+    (user !== null || user === null) && (
+      <Container>
+        <Content>
+          <Top>
+            <img src="" />
+            <Text>username</Text>
+            <p>Email do user</p>
+          </Top>
+          <Options>
+            <Button>Home</Button>
+            <Button>Minhas compras</Button>
+            <Button>Biblioteca</Button>
+          </Options>
+          <Final>
+            <button onClick={exitApp}>Logout</button>
+          </Final>
+        </Content>
+        <Background onClick={() => setNavbarMenu(false)} />
+      </Container>
+    )
   );
 }
 
@@ -31,6 +41,10 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 20;
 `;
 
 const Content = styled.div`
@@ -42,6 +56,11 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
 `;
 
 const Background = styled.div`
@@ -49,6 +68,11 @@ const Background = styled.div`
   height: 100vh;
   background: rgba(217, 217, 217, 0.75);
   opacity: 0.5;
+
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 10;
 `;
 
 const Options = styled.div`
