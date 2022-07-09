@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 const Container = styled.form`
   display: flex;
@@ -9,14 +9,14 @@ const Container = styled.form`
 
   input {
     background-color: ${props => props.color};
-    width: 326px;
+    width: 50vw;
     height: 58px;
     padding: 0 15px;
-    font: normal 400 20px 'Raleway', sans-serif;
+    font: normal 400 20px "Raleway", sans-serif;
   }
 
   input::placeholder {
-    font: normal 400 20px 'Raleway', sans-serif;
+    font: normal 400 20px "Raleway", sans-serif;
     color: #000000;
     line-height: 23px;
   }
@@ -24,10 +24,10 @@ const Container = styled.form`
   button {
     opacity: ${props => props.opacity};
     cursor: pointer;
-    width: 326px;
+    width: 50vw;
     height: 46px;
     background-color: #c1d3ee;
-    font: normal 700 20px 'Raleway', sans-serif;
+    font: normal 700 20px "Raleway", sans-serif;
     color: #000000;
     line-height: 23px;
     display: flex;
@@ -50,10 +50,10 @@ const Container = styled.form`
       width: 87.6vw;
     }
   }
-`
+`;
 
 const InputBox = styled.div`
-  width: 326px;
+  width: 50vw;
   height: 58px;
   display: flex;
   border-radius: 5px;
@@ -65,7 +65,7 @@ const InputBox = styled.div`
   }
 
   input {
-    width: 281px;
+    width: 46vw;
     border: none;
   }
 
@@ -87,6 +87,6 @@ const InputBox = styled.div`
       width: 75.6vw;
     }
   }
-`
+`;
 
-export { Container, InputBox }
+export { Container, InputBox };
