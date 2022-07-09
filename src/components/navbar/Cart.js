@@ -28,10 +28,10 @@ function NavBarCart() {
           </Top>
           <Cart>
             <Items>
-              <img src="https://image.api.playstation.com/vulcan/img/rnd/202009/2923/jAT7HjpL49A62bU7hLKXJ96b.png" />
+              <img src={user.cart.url} />
               <div>
-                <p>Nome do jogo</p>
-                <p>Preço</p>
+                <p>{user.cart.name}</p>
+                <p>{user.cart.price}</p>
 
                 <p>Quantidade</p>
                 <div className="amount">

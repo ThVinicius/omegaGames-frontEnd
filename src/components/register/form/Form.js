@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import { Container, InputBox } from './styles';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { Container, InputBox } from "./styles";
 import {
   spinnerLoading,
   disableInput,
@@ -9,15 +9,15 @@ import {
   opacityButton,
   showOrHideIcon,
   showOrHidePassword
-} from './functions';
+} from "./functions";
 
 export default function Form() {
   const [input, setInput] = useState({
-    name: '',
-    email: '',
-    picture: '',
-    password: '',
-    confirmPassword: ''
+    name: "",
+    email: "",
+    picture: "",
+    password: "",
+    confirmPassword: ""
   });
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -52,7 +52,7 @@ export default function Form() {
     if (password !== confirmPassword) {
       setLoading(false);
 
-      alert('As senhas são diferentes!');
+      alert("As senhas são diferentes!");
       return;
     }
 
@@ -64,20 +64,20 @@ export default function Form() {
 
     promise
       .then(() => {
-        alert('Cadastro realizado com sucesso!');
+        alert("Cadastro realizado com sucesso!");
 
-        navigate('/');
+        navigate("/");
       })
       .catch(res => {
         setLoading(false);
         switch (true) {
           case res.response.status === 409:
-            alert('Esse e-mail já está cadastrado!');
+            alert("Esse e-mail já está cadastrado!");
             return;
 
           case res.response.status === 400:
             alert(
-              'Os dados digitados estão fora do padrão aceito, por favor digite um email válido'
+              "Os dados digitados estão fora do padrão aceito, por favor digite um email válido"
             );
             return;
 

@@ -2,27 +2,46 @@ import { useEffect, useState } from "react";
 import { get } from "axios";
 import Games from "../games/Games";
 import { Container, Content, Header, App } from "./styles";
-import { UserContext } from "../../../context/userContext";
-import { useContext } from "react";
-import { AuthContext, useAuth } from "../../../context/auth";
-
-//Alterei o userContext para authcontext e não funcionou
-//
+import { useAuth } from "../../../context/auth";
 
 export default function HomeScreen() {
   const [games, setGames] = useState(undefined);
-  //const { setNavBar } = useContext(AuthContext);
 
-  const { user, setNavbarMenu, setNavbarCart } = useAuth();
+  const { user, setUser, setNavbarMenu, setNavbarCart } = useAuth();
 
   useEffect(() => {
-    const URL = process.env.REACT_APP_API_URL;
+    async function fetchData() {
+      const URL = process.env.REACT_APP_API_URL;
 
-    const promise = get(`${URL}/games`);
+      const { data } = await get(`${URL}/games`);
 
-    promise.then(({ data }) => {
+      user.games = data;
+
       setGames(data);
-    });
+
+      const getToken = localStorage.getItem("token");
+
+      if (getToken !== null && user.token === undefined) {
+        const token = JSON.parse(getToken);
+
+        user.token = token;
+      }
+
+      if (user.token !== undefined) {
+        const config = { headers: { Authorization: `Bearer ${user.token}` } };
+
+        const { data: res } = await get(`${URL}/user`, config);
+        const { email, name, picture, cart, purchases } = res;
+
+        if (user.cart.length > 0) {
+          setUser({ ...user, email, name, picture, purchases });
+        } else {
+          setUser({ ...user, email, name, picture, cart, purchases });
+        }
+      }
+    }
+
+    fetchData().catch((error) => console.log(error));
   }, []);
 
   return (
@@ -42,8 +61,9 @@ export default function HomeScreen() {
           <Content>
             {games === undefined
               ? "loading"
-              : games.map(({ url, price, name, _id }, index) => (
+              : games.map(({ rating, url, price, name, _id }, index) => (
                   <Games
+                    rating={rating}
                     name={name}
                     url={url}
                     price={price}

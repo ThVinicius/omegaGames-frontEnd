@@ -18,9 +18,9 @@ function NavBarMenu() {
       <Container>
         <Content>
           <Top>
-            <img src="" />
-            <Text>username</Text>
-            <p>Email do user</p>
+            <img src={user.picture} />
+            <Text>{user.name}</Text>
+            <p>{user.email}</p>
           </Top>
           <Options>
             <Button>Home</Button>

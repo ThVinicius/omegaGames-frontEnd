@@ -7,6 +7,7 @@ import NavBarCart from "./navbar/Cart";
 import NavBarMenu from "./navbar/Menu";
 import HomeScreen from "./home/main/HomeScreen";
 import { useAuth } from "../context/auth";
+import LibScreen from "./lib/main/LibScreen";
 
 export default function App() {
   const { navbarMenu, navbarCart } = useAuth();
@@ -15,11 +16,16 @@ export default function App() {
     <BrowserRouter>
       <ResetCSS />
       <GlobalStyle />
-      {navbarMenu && <NavBarMenu /> || navbarCart && <NavBarCart />}
+      {(navbarMenu && <NavBarMenu />) || (navbarCart && <NavBarCart />)}
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<RegisterScreen />} />
         <Route path="/" element={<HomeScreen />} />
+      </Routes>
+      <Routes>
+        <Route path="/register" element={<RegisterScreen />} />
+        <Route path="/" element={<HomeScreen />} />
+        <Route path="/lib" element={<LibScreen />} />
       </Routes>
     </BrowserRouter>
   );

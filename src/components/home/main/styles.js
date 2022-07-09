@@ -10,10 +10,12 @@ const Container = styled.div`
 
 const App = styled.div`
   width: 100%;
+
   height: 100vh;
   background-color: #ffffff;
   position: relative;
 `;
+
 const Header = styled.header`
   width: 100%;
   height: 15vh;
@@ -42,9 +44,10 @@ const Content = styled.div`
   overflow-y: auto;
   padding: 20px;
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 7px;
   background-color: #f2f3f4;
 `;
 
-export { Container, App, Header, Content };
+export { Container, App, Content, Header };

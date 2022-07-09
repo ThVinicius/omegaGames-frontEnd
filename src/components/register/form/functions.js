@@ -1,23 +1,23 @@
-import { ThreeDots } from 'react-loader-spinner';
+import { ThreeDots } from "react-loader-spinner";
 
 const spinnerLoading = loading => {
-  if (loading === false) return 'Cadastrar';
+  if (loading === false) return "Cadastrar";
   return <ThreeDots color="#FFFFFF" height={20} width={99} />;
 };
 
 const disableInput = loading => {
-  if (loading === false) return '';
-  return 'disable';
+  if (loading === false) return "";
+  return "disable";
 };
 
 const inputColorLoading = loading => {
-  if (loading === false) return '#ffffff';
-  return '#F2F2F2';
+  if (loading === false) return "#ffffff";
+  return "#F2F2F2";
 };
 
 const opacityButton = loading => {
-  if (loading === false) return '1';
-  return '0.7';
+  if (loading === false) return "1";
+  return "0.7";
 };
 
 const showOrHideIcon = (showPassword, setShowPassword) => {
@@ -38,9 +38,9 @@ const showOrHideIcon = (showPassword, setShowPassword) => {
 };
 
 const showOrHidePassword = showPassword => {
-  if (showPassword === false) return 'password';
+  if (showPassword === false) return "password";
 
-  return 'text';
+  return "text";
 };
 
 export {

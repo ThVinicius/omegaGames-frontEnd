@@ -1,8 +1,8 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const Container = styled.div`
-  width: 106px;
-  height: 180px;
+  width: 150px;
+  height: 220px;
   padding: 10px 0;
   background-color: #ffffff;
   display: flex;
@@ -15,9 +15,34 @@ const Container = styled.div`
   cursor: pointer;
 
   img {
-    width: 90px;
-    height: 133px;
+    width: 120px;
+    height: 175px;
     border-radius: 10px;
+  }
+
+  div {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  p {
+    font: normal 700 20px "Raleway", sans-serif;
+  }
+
+  @media (max-width: 420px) {
+    & {
+      width: 106px;
+      height: 180px;
+    }
+    img {
+      width: 90px;
+      height: 133px;
+    }
+    p {
+      font: normal 700 15px "Raleway", sans-serif;
+    }
   }
 `;
 
