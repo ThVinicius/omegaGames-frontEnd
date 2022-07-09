@@ -8,23 +8,15 @@ const Container = styled.div`
   align-items: center;
 `;
 
-const App = styled.div`
-  width: 100vw;
-  height: 100vh;
-  background-color: #ffffff;
-  position: relative;
-`;
-
 const Content = styled.div`
   width: 100vw;
   height: 85vh;
-  overflow-y: auto;
+  background-color: #fafafb;
   padding: 20px;
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
-  gap: 7px;
-  background-color: #f2f3f4;
+  gap: 8px;
+  overflow-y: auto;
 `;
 
-export { Container, App, Content };
+export { Container, Content };

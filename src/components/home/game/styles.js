@@ -16,7 +16,7 @@ const Container = styled.div`
 const Content = styled.div`
   width: 46.97vw;
   height: 76.01vh;
-  padding: 3vh 0;
+  padding: 5px 0;
   background-color: #1156be;
   display: flex;
   flex-direction: column;
@@ -24,6 +24,16 @@ const Content = styled.div`
   justify-content: space-between;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   border-radius: 8px;
+
+  i {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  p {
+    font: normal 700 20px "Raleway", sans-serif;
+    color: #ffffff;
+  }
 
   div:first-child {
     display: flex;
@@ -33,7 +43,7 @@ const Content = styled.div`
   }
 
   h1 {
-    font: normal 400 36px "Saira Stencil One", cursive;
+    font: normal 400 26px "Saira Stencil One", cursive;
     color: #ffffff;
     text-align: center;
   }
@@ -64,20 +74,20 @@ const Content = styled.div`
   button:first-child {
     background-color: #1156be;
     color: #ffffff;
-    font: normal 700 25px "Raleway", sans-serif;
+    font: normal 700 18px "Raleway", sans-serif;
   }
 
   button:nth-child(2) {
     padding: 10px;
     border-radius: 5px;
-    font: normal 700 25px "Raleway", sans-serif;
+    font: normal 700 18px "Raleway", sans-serif;
     background-color: #1a6e05;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     color: #ffffff;
   }
 
   h5 {
-    font: normal 700 25px "Raleway", sans-serif;
+    font: normal 700 18px "Raleway", sans-serif;
     padding: 10px;
     border-radius: 5px;
     background-color: #ff0000;
@@ -85,7 +95,7 @@ const Content = styled.div`
   }
 
   h6 {
-    font: normal 700 25px "Raleway", sans-serif;
+    font: normal 700 18px "Raleway", sans-serif;
     padding: 10px;
     border-radius: 5px;
     background-color: #9400d3;

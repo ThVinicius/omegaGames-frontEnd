@@ -1,11 +1,12 @@
 import { useContext } from "react";
 import { UserContext } from "../../../context/userContext";
+import Rating from "@mui/material/Rating";
 import { post } from "axios";
 import { priceBRL } from "../../../shared/functions";
 import { verifyGame } from "./functions";
 import { Container, Content } from "./styles";
 
-export default function Game({ game, setGame }) {
+export default function Game({ rating, value, game, setGame }) {
   const { name, url, price, _id } = game;
   const { user } = useContext(UserContext);
 
@@ -34,11 +35,20 @@ export default function Game({ game, setGame }) {
   }
 
   return (
-    <Container id="destaque game">
+    <Container>
       <Content>
         <div>
           <h1>{name}</h1>
           <img src={url} alt="game" />
+          <i>
+            <Rating
+              size="large"
+              defaultValue={value}
+              precision={0.5}
+              readOnly
+            />
+            <p>({rating.length})</p>
+          </i>
           <h2>R$ {priceBRL(price)}</h2>
         </div>
         <div>

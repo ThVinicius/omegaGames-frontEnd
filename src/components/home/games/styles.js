@@ -20,6 +20,13 @@ const Container = styled.div`
     border-radius: 10px;
   }
 
+  div {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   p {
     font: normal 700 20px "Raleway", sans-serif;
   }
