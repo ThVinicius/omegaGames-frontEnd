@@ -2,17 +2,16 @@ import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context/auth";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function NavBarCart() {
-  const [amount, setAmount] = useState(1);
-
   const { user, setNavbarCart } = useAuth();
-  //const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState(user.cart);
 
-  const URL = `${process.env.REACT_APP_API_URL}`;
+  /*const [amount, setAmount] = useState(1);
+   const URL = `${process.env.REACT_APP_API_URL}`;
 
-  
-  /*   useEffect(() => {
+     useEffect(() => {
     if (user) {
       function getCart() {
         const promise = axios.get(URL, {
@@ -30,10 +29,8 @@ function NavBarCart() {
       }
       getCart();
     }
-  }, []); */
-  
-  console.log(user.cart);
-  
+  }, []); 
+
   function addAmount() {
     setAmount(amount + 1);
   }
@@ -41,11 +38,16 @@ function NavBarCart() {
     if (amount > 1) {
       setAmount(amount - 1);
     }
-  }
-  const cart = user.cart;
-  
+  } */
+
+  const navigate = useNavigate();
+  const URL = `${process.env.REACT_APP_API_URL}`;
+  const config = { headers: { Authorization: `Bearer ${user.token}` } };  
+
+  const amount = 1;
+
   function renderCart() {
-    return cart.map((i) => {
+    return cart.map((i) => (
       <Items key={i._id}>
         <img src={i.url} />
         <div>
@@ -54,14 +56,32 @@ function NavBarCart() {
 
           <p>Quantidade</p>
           <div className="amount">
-            <button onClick={removeAmount}>-</button>
             <input disabled placeholder={amount} />
-            <button onClick={addAmount}>+</button>
           </div>
-          <Button>Remover</Button>
+          <Button onClick={removeCart}>Remover</Button>
         </div>
-      </Items>;
-    });
+      </Items>
+    ));
+  }
+
+  function removeCart() {
+    cart.splice(cart._id, 1);
+  }
+
+  function finalPurchase() {
+    /* const products = [];
+
+    cart.map(
+      (i) =>
+        (products = [
+          {
+            url: i.url,
+            price: i.price,
+          },
+        ])
+    );
+    const promise = post(`${URL}/sucess/${_id}`, body, config); */
+    navigate("/sucess", products);
   }
 
   return (
@@ -75,7 +95,7 @@ function NavBarCart() {
           </Top>
           <Cart>{renderCart()}</Cart>
           <Final>
-            <button>Finalizar Compra</button>
+            <button onClick={finalPurchase}>Finalizar Compra</button>
           </Final>
         </Content>
       </Container>
