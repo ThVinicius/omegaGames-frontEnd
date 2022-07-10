@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context/auth";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function NavBarCart() {
   const { user, setNavbarCart } = useAuth();
@@ -10,27 +10,6 @@ function NavBarCart() {
 
   /*const [amount, setAmount] = useState(1);
    const URL = `${process.env.REACT_APP_API_URL}`;
-
-     useEffect(() => {
-    if (user) {
-      function getCart() {
-        const promise = axios.get(URL, {
-          headers: {
-            Authorization: `Bearer ${user.token}`,
-          },
-        });
-        promise
-        .then((res) => {
-          cart = user.cart;
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-      }
-      getCart();
-    }
-  }, []); 
-
   function addAmount() {
     setAmount(amount + 1);
   }
@@ -41,8 +20,8 @@ function NavBarCart() {
   } */
 
   const navigate = useNavigate();
-  const URL = `${process.env.REACT_APP_API_URL}`;
-  const config = { headers: { Authorization: `Bearer ${user.token}` } };  
+  const URL = `${process.env.REACT_APP_API_URL}/sucess`;
+  const config = { headers: { Authorization: `Bearer ${user.token}` } };
 
   const amount = 1;
 
@@ -68,20 +47,31 @@ function NavBarCart() {
     cart.splice(cart._id, 1);
   }
 
-  function finalPurchase() {
-    /* const products = [];
+  /*   useEffect(() => {
+    if (user) {
+      function getCart() {
+        const promise = axios.get(URL, config);
+        promise
+          .then((res) => {
+            navigate("/sucess", {
+              state: [{ url: cart.url, price: cart.price }, ...products],
+            });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+      getCart();
+    }
+  }, []); */
 
-    cart.map(
-      (i) =>
-        (products = [
-          {
-            url: i.url,
-            price: i.price,
-          },
-        ])
-    );
-    const promise = post(`${URL}/sucess/${_id}`, body, config); */
-    navigate("/sucess", products);
+  function finalPurchase() {
+    let products = [];
+    
+    //    products.push = cart;
+
+    console.log(products);
+    navigate("/sucess");
   }
 
   return (
@@ -94,9 +84,19 @@ function NavBarCart() {
             <Text>Seus Produtos</Text>
           </Top>
           <Cart>{renderCart()}</Cart>
-          <Final>
-            <button onClick={finalPurchase}>Finalizar Compra</button>
-          </Final>
+          {user.token !== undefined ? (
+            <Final>
+              <Link to="/sucess" onClick={() => setNavbarCart(false)}>
+                <button onClick={finalPurchase}>Finalizar Compra</button>
+              </Link>
+            </Final>
+          ) : (
+            <Final>
+              <Link to="/login" onClick={() => setNavbarCart(false)}>
+                <button>Finalizar Compra</button>
+              </Link>
+            </Final>
+          )}
         </Content>
       </Container>
     )
