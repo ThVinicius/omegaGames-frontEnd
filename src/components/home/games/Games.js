@@ -6,7 +6,6 @@ import Game from "../game/Game";
 
 export default function Games({ rating, ratingValue, url, price, name, _id }) {
   const [game, setGame] = useState(undefined);
-  // const value = arithmeticMeanRating(rating);
 
   function gameContrast() {
     if (game === undefined) return;
