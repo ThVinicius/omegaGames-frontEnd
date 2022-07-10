@@ -1,5 +1,4 @@
-import { useContext } from "react";
-import { UserContext } from "../../../context/userContext";
+import { useAuth } from "../../../context/auth";
 import Rating from "@mui/material/Rating";
 import { post } from "axios";
 import { priceBRL } from "../../../shared/functions";
@@ -8,7 +7,7 @@ import { Container, Content } from "./styles";
 
 export default function Game({ rating, ratingValue, game, setGame }) {
   const { name, url, price, _id } = game;
-  const { user } = useContext(UserContext);
+  const { user } = useAuth();
 
   function addCart() {
     user.cart.push({ name, url, price, _id });
@@ -22,13 +21,7 @@ export default function Game({ rating, ratingValue, game, setGame }) {
 
       const promise = post(`${URL}/cart/${_id}`, body, config);
 
-      promise
-        .then(() => {
-          console.log("deu certo");
-        })
-        .catch(() => {
-          console.log("deu errado");
-        });
+      promise.then(() => {}).catch(() => {});
     }
 
     setGame(undefined);

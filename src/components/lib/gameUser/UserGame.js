@@ -1,13 +1,13 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { put } from "axios";
-import { UserContext } from "../../../context/userContext";
+import { useAuth } from "../../../context/auth";
 import Rating from "@mui/material/Rating";
 import { arithmeticMeanRating } from "../../../shared/functions";
 import { ratingGame, loadingSpinner, disabledRating } from "./functions";
 import { Container, RatingBox } from "./styles";
 
 export default function UserGame({ _id, name, url, userRating }) {
-  const { user } = useContext(UserContext);
+  const { user } = useAuth();
   const [input] = useState({ value: userRating });
   const [loading, setLoading] = useState({ value: false, spinner: undefined });
   const [rating] = useState(ratingGame(user, arithmeticMeanRating, _id));
