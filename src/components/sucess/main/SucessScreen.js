@@ -3,7 +3,7 @@ import PurchasedGames from "../purchasedGames/PurchasedGames";
 import { Container, Content, ButtonContainer, GamesContainer } from "./styles";
 
 export default function SucessScreen() {
-  const { games } = useLocation();
+  const { state } = useLocation();
 
   return (
     <Container>
@@ -13,7 +13,7 @@ export default function SucessScreen() {
       <Content>
         <h1>Compra realizada com sucesso!</h1>
         <GamesContainer>
-          {games.map(({ url, price }) => (
+          {state.map(({ url, price }) => (
             <PurchasedGames url={url} price={price} />
           ))}
         </GamesContainer>
