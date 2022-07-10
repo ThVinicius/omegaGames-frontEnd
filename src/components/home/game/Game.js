@@ -6,7 +6,7 @@ import { priceBRL } from "../../../shared/functions";
 import { verifyGame } from "./functions";
 import { Container, Content } from "./styles";
 
-export default function Game({ rating, value, game, setGame }) {
+export default function Game({ rating, ratingValue, game, setGame }) {
   const { name, url, price, _id } = game;
   const { user } = useContext(UserContext);
 
@@ -43,7 +43,7 @@ export default function Game({ rating, value, game, setGame }) {
           <i>
             <Rating
               size="large"
-              defaultValue={value}
+              defaultValue={ratingValue}
               precision={0.5}
               readOnly
             />

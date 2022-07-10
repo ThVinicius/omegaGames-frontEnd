@@ -4,13 +4,20 @@ import { priceBRL, arithmeticMeanRating } from "../../../shared/functions";
 import { Container } from "./styles";
 import Game from "../game/Game";
 
-export default function Games({ rating, url, price, name, _id }) {
+export default function Games({ rating, ratingValue, url, price, name, _id }) {
   const [game, setGame] = useState(undefined);
-  const value = arithmeticMeanRating(rating);
+  // const value = arithmeticMeanRating(rating);
 
   function gameContrast() {
     if (game === undefined) return;
-    return <Game rating={rating} value={value} game={game} setGame={setGame} />;
+    return (
+      <Game
+        ratingValue={ratingValue}
+        rating={rating}
+        game={game}
+        setGame={setGame}
+      />
+    );
   }
 
   return (
@@ -19,7 +26,12 @@ export default function Games({ rating, url, price, name, _id }) {
       <Container onClick={() => setGame({ url, price, name, _id })}>
         <img src={url} alt="game" />
         <div>
-          <Rating size="small" defaultValue={value} precision={0.5} readOnly />
+          <Rating
+            size="small"
+            defaultValue={ratingValue}
+            precision={0.5}
+            readOnly
+          />
           <span>({rating.length})</span>
         </div>
 

@@ -3,6 +3,7 @@ import { get } from "axios";
 import { UserContext } from "../../../context/userContext";
 import Header from "../../shared/header/Header";
 import Games from "../games/Games";
+import { arithmeticMeanRating } from "../../../shared/functions";
 import { Container, Content, App } from "./styles";
 
 export default function HomeScreen() {
@@ -15,9 +16,19 @@ export default function HomeScreen() {
 
       const { data } = await get(`${URL}/games`);
 
-      user.games = data;
+      function calcRating(arr) {
+        const aux = [];
 
-      setGames(data);
+        for (const game of arr) {
+          aux.push({ ...game, ratingValue: arithmeticMeanRating(game.rating) });
+        }
+        return aux;
+      }
+      const games = calcRating(data);
+
+      user.games = games;
+
+      setGames(games);
 
       const getToken = localStorage.getItem("token");
 
@@ -51,16 +62,19 @@ export default function HomeScreen() {
         <Content>
           {games === undefined
             ? "loading"
-            : games.map(({ rating, url, price, name, _id }, index) => (
-                <Games
-                  rating={rating}
-                  name={name}
-                  url={url}
-                  price={price}
-                  _id={_id}
-                  key={index}
-                />
-              ))}
+            : games.map(
+                ({ rating, ratingValue, url, price, name, _id }, index) => (
+                  <Games
+                    rating={rating}
+                    ratingValue={ratingValue}
+                    name={name}
+                    url={url}
+                    price={price}
+                    _id={_id}
+                    key={index}
+                  />
+                )
+              )}
         </Content>
       </App>
     </Container>
