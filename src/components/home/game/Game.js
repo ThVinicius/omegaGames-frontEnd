@@ -5,10 +5,11 @@ import { post } from "axios";
 import { priceBRL } from "../../../shared/functions";
 import { verifyGame } from "./functions";
 import { Container, Content } from "./styles";
+import { useAuth } from "../../../context/auth";
 
 export default function Game({ rating, value, game, setGame }) {
   const { name, url, price, _id } = game;
-  const { user } = useContext(UserContext);
+  const { user } = useAuth();
 
   function addCart() {
     user.cart.push({ name, url, price, _id });

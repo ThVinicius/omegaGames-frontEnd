@@ -5,9 +5,10 @@ import Rating from "@mui/material/Rating";
 import { arithmeticMeanRating } from "../../../shared/functions";
 import { ratingGame, loadingSpinner, disabledRating } from "./functions";
 import { Container, RatingBox } from "./styles";
+import { useAuth } from "../../../context/auth";
 
 export default function UserGame({ _id, name, url, userRating }) {
-  const { user } = useContext(UserContext);
+  const { user } = useAuth();
   const [input] = useState({ value: userRating });
   const [loading, setLoading] = useState({ value: false, spinner: undefined });
   const [rating] = useState(ratingGame(user, arithmeticMeanRating, _id));

@@ -21,10 +21,6 @@ export default function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<RegisterScreen />} />
         <Route path="/" element={<HomeScreen />} />
-      </Routes>
-      <Routes>
-        <Route path="/register" element={<RegisterScreen />} />
-        <Route path="/" element={<HomeScreen />} />
         <Route path="/lib" element={<LibScreen />} />
       </Routes>
     </BrowserRouter>

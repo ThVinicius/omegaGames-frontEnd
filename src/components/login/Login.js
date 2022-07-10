@@ -13,10 +13,6 @@ function Login() {
   const { user, setUser } = useAuth();
   const [loading, setLoading] = useState(false);
 
-  // if (user !== null) {
-  //   navigate('/login')
-  // }
-
   const URL = `${process.env.REACT_APP_API_URL}/login`;
 
   const [userLogin, setUserLogin] = useState({
@@ -32,9 +28,8 @@ function Login() {
     });
 
     promise.then((response) => {
-      console.log(response.data);
-      setUser(response.data);
       setLoading(true);
+      console.log(response.data);
       navigate("/");
     });
 
