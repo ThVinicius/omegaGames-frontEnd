@@ -29,7 +29,7 @@ function Login() {
 
     promise.then((response) => {
       setLoading(true);
-      console.log(response.data);
+      user.token = response.data.token
       navigate("/");
     });
 

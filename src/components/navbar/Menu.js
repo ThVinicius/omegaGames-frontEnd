@@ -1,6 +1,7 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useAuth } from "../../context/auth";
+import Logo from "../logo/Logo";
 
 function NavBarMenu() {
   const navigate = useNavigate();
@@ -16,21 +17,34 @@ function NavBarMenu() {
   return (
     (user !== null || user === null) && (
       <Container>
-        <Content>
-          <Top>
-            <img src={user.picture} />
-            <Text>{user.name}</Text>
-            <p>{user.email}</p>
-          </Top>
-          <Options>
-            <Button>Home</Button>
-            <Button>Minhas compras</Button>
-            <Button>Biblioteca</Button>
-          </Options>
-          <Final>
-            <button onClick={exitApp}>Logout</button>
-          </Final>
-        </Content>
+        {user.token !== undefined ? (
+          <Content>
+            <Top>
+              <img src={user.picture} />
+              <Text>{user.name}</Text>
+              <p>{user.email}</p>
+            </Top>
+            <Options>
+              <Button>Home</Button>
+              <Button>Minhas compras</Button>
+              <Button>Biblioteca</Button>
+            </Options>
+            <Final>
+              <button onClick={exitApp}>Logout</button>
+            </Final>
+          </Content>
+        ) : (
+          <Content>
+            <Top>
+              <Link to="/login" onClick={() => setNavbarMenu(false)}>
+                <Text className="login">Faça Login</Text>
+              </Link>
+            </Top>
+            <Link to="/register" onClick={() => setNavbarMenu(false)}>
+              <Text className="register">ou Cadastre-se</Text>
+            </Link>
+          </Content>
+        )}
         <Background onClick={() => setNavbarMenu(false)} />
       </Container>
     )

@@ -1,13 +1,39 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "../../context/auth";
+import axios from "axios";
 
 function NavBarCart() {
-  //const { setNavBar } = useContext(UserContext);
   const [amount, setAmount] = useState(1);
 
   const { user, setNavbarCart } = useAuth();
+  //const [cart, setCart] = useState([]);
 
+  const URL = `${process.env.REACT_APP_API_URL}`;
+
+  
+  /*   useEffect(() => {
+    if (user) {
+      function getCart() {
+        const promise = axios.get(URL, {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        });
+        promise
+        .then((res) => {
+          cart = user.cart;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      }
+      getCart();
+    }
+  }, []); */
+  
+  console.log(user.cart);
+  
   function addAmount() {
     setAmount(amount + 1);
   }
@@ -16,9 +42,30 @@ function NavBarCart() {
       setAmount(amount - 1);
     }
   }
+  const cart = user.cart;
+  
+  function renderCart() {
+    return cart.map((i) => {
+      <Items key={i._id}>
+        <img src={i.url} />
+        <div>
+          <p>{i.name}</p>
+          <p>{i.price}</p>
+
+          <p>Quantidade</p>
+          <div className="amount">
+            <button onClick={removeAmount}>-</button>
+            <input disabled placeholder={amount} />
+            <button onClick={addAmount}>+</button>
+          </div>
+          <Button>Remover</Button>
+        </div>
+      </Items>;
+    });
+  }
 
   return (
-    (user === null || user !== null) && (
+    (user === undefined || user !== undefined) && (
       <Container>
         <Background onClick={() => setNavbarCart(false)} />
         <Content>
@@ -26,23 +73,7 @@ function NavBarCart() {
             <ion-icon name="cart-outline"></ion-icon>
             <Text>Seus Produtos</Text>
           </Top>
-          <Cart>
-            <Items>
-              <img src={user.cart.url} />
-              <div>
-                <p>{user.cart.name}</p>
-                <p>{user.cart.price}</p>
-
-                <p>Quantidade</p>
-                <div className="amount">
-                  <button onClick={removeAmount}>-</button>
-                  <input disabled placeholder={amount} />
-                  <button onClick={addAmount}>+</button>
-                </div>
-                <Button>Remover</Button>
-              </div>
-            </Items>
-          </Cart>
+          <Cart>{renderCart()}</Cart>
           <Final>
             <button>Finalizar Compra</button>
           </Final>
