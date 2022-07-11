@@ -5,23 +5,10 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
 function NavBarCart() {
-  const { user, setNavbarCart } = useAuth();
+  const { user, setUser, setNavbarCart } = useAuth();
   const [cart, setCart] = useState(user.cart);
 
-  /*const [amount, setAmount] = useState(1);
-   const URL = `${process.env.REACT_APP_API_URL}`;
-  function addAmount() {
-    setAmount(amount + 1);
-  }
-  function removeAmount() {
-    if (amount > 1) {
-      setAmount(amount - 1);
-    }
-  } */
-
   const navigate = useNavigate();
-  const URL = `${process.env.REACT_APP_API_URL}/sucess`;
-  const config = { headers: { Authorization: `Bearer ${user.token}` } };
 
   const amount = 1;
 
@@ -46,32 +33,22 @@ function NavBarCart() {
   function removeCart() {
     cart.splice(cart._id, 1);
   }
+  /* const URL = `${process.env.REACT_APP_API_URL}/sucess`;
+  const config = { headers: { Authorization: `Bearer ${user.token}` } };
+  const promise = axios.post(URL, config);
 
-  /*   useEffect(() => {
-    if (user) {
-      function getCart() {
-        const promise = axios.get(URL, config);
-        promise
-          .then((res) => {
-            navigate("/sucess", {
-              state: [{ url: cart.url, price: cart.price }, ...products],
-            });
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      }
-      getCart();
-    }
-  }, []); */
+  promise.then((res) => {
+    user.purchases = user.cart;
+  });
 
+  promise.catch((err) => {
+    console.log(err);
+  }); */
+  
   function finalPurchase() {
-    let products = [];
-    
-    //    products.push = cart;
-
-    console.log(products);
-    navigate("/sucess");
+    const aux = user.cart;
+    user.cart = [];
+    navigate("/sucess", { state: aux });
   }
 
   return (

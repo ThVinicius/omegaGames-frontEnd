@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { useAuth } from "../../../context/auth";
 import { UserContext } from "../../../context/userContext";
 import Header from "../../shared/header/Header";
 import UserGame from "../gameUser/UserGame";
@@ -6,7 +7,8 @@ import UserGame from "../gameUser/UserGame";
 import { Container, Content } from "./styles";
 
 export default function LibScreen() {
-  const { user } = useContext(UserContext);
+  const { user } = useAuth();
+  console.log(user.purchases);
   return (
     <Container>
       <Header />

@@ -3,6 +3,7 @@ import { get } from "axios";
 import Games from "../games/Games";
 import { Container, Content, Header, App } from "./styles";
 import { useAuth } from "../../../context/auth";
+import { arithmeticMeanRating } from "../../../shared/functions";
 
 export default function HomeScreen() {
   const [games, setGames] = useState(undefined);
@@ -15,9 +16,19 @@ export default function HomeScreen() {
 
       const { data } = await get(`${URL}/games`);
 
-      user.games = data;
+      function calcRating(arr) {
+        const aux = [];
 
-      setGames(data);
+        for (const game of arr) {
+          aux.push({ ...game, ratingValue: arithmeticMeanRating(game.rating) });
+        }
+        return aux;
+      }
+      const games = calcRating(data);
+
+      user.games = games;
+
+      setGames(games);
 
       const getToken = localStorage.getItem("token");
 
@@ -61,9 +72,10 @@ export default function HomeScreen() {
           <Content>
             {games === undefined
               ? "loading"
-              : games.map(({ rating, url, price, name, _id }, index) => (
+              : games.map(({ rating, ratingValue, url, price, name, _id }, index) => (
                   <Games
                     rating={rating}
+                    ratingValue={ratingValue}
                     name={name}
                     url={url}
                     price={price}

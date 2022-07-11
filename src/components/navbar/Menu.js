@@ -25,9 +25,15 @@ function NavBarMenu() {
               <p>{user.email}</p>
             </Top>
             <Options>
-              <Button>Home</Button>
-              <Button>Minhas compras</Button>
-              <Button>Biblioteca</Button>
+              <Link to="/">
+                <Button>Home</Button>
+              </Link>
+              <Link to="/lib">
+                <Button>Minhas compras</Button>
+              </Link>
+              <Link to="/lib">
+                <Button>Biblioteca</Button>
+              </Link>
             </Options>
             <Final>
               <button onClick={exitApp}>Logout</button>

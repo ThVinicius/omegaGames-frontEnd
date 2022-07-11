@@ -7,7 +7,7 @@ import { verifyGame } from "./functions";
 import { Container, Content } from "./styles";
 import { useAuth } from "../../../context/auth";
 
-export default function Game({ rating, value, game, setGame }) {
+export default function Game({ rating, ratingValue, game, setGame }) {
   const { name, url, price, _id } = game;
   const { user } = useAuth();
 
@@ -44,7 +44,7 @@ export default function Game({ rating, value, game, setGame }) {
           <i>
             <Rating
               size="large"
-              defaultValue={value}
+              defaultValue={ratingValue}
               precision={0.5}
               readOnly
             />

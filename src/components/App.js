@@ -8,6 +8,7 @@ import NavBarMenu from "./navbar/Menu";
 import HomeScreen from "./home/main/HomeScreen";
 import { useAuth } from "../context/auth";
 import LibScreen from "./lib/main/LibScreen";
+import SucessScreen from "./sucess/main/SucessScreen";
 
 export default function App() {
   const { navbarMenu, navbarCart } = useAuth();
@@ -22,6 +23,7 @@ export default function App() {
         <Route path="/register" element={<RegisterScreen />} />
         <Route path="/" element={<HomeScreen />} />
         <Route path="/lib" element={<LibScreen />} />
+        <Route path="/sucess" element={<SucessScreen />} />
       </Routes>
     </BrowserRouter>
   );
