@@ -9,7 +9,7 @@ import { Link, useNavigate } from "react-router-dom";
 function NavBarCart() {
   const { user, setUser, navbarCart, setNavbarCart } = useAuth();
   const [cart, setCart] = useState(user.cart);
-  const [loading] = useState({ value: false });
+  const [loading, setLoading] = useState({ value: false });
 
   const navigate = useNavigate();
 
@@ -56,11 +56,9 @@ function NavBarCart() {
 
   function finalPurchase() {
     if (loading.value === true) return;
-    loading.value = true;
+    setLoading({ ...loading, value: true });
 
     const aux = user.cart;
-    user.cart = [];
-    navbarCart.value = false;
 
     const URL = `${process.env.REACT_APP_API_URL}/purchase`;
     const config = { headers: { Authorization: `Bearer ${user.token}` } };
@@ -68,11 +66,14 @@ function NavBarCart() {
     const promise = axios.post(URL, body, config);
     promise.then(() => {
       loading.value = false;
-      setUser({ ...user });
+      setNavbarCart({ ...navbarCart, value: false });
+      user.cart = [];
       navigate("/sucess", { state: aux });
     });
     promise.catch(err => {
+      alert("sua operaração não foi concluída!\nacontenceu um erro inesperado");
       loading.value = false;
+      setNavbarCart({ ...navbarCart, value: false });
       console.log(err);
     });
   }
