@@ -7,10 +7,13 @@ import { Container, Content } from "./styles";
 
 export default function Game({ rating, ratingValue, game, setGame }) {
   const { name, url, price, _id } = game;
-  const { user } = useAuth();
+  const { user, setUser } = useAuth();
 
   function addCart() {
-    user.cart.push({ name, url, price, _id, userRating: 0 });
+    setUser({
+      ...user,
+      cart: [...user.cart, { name, url, price, _id, userRating: 0 }]
+    });
 
     if (user.token !== undefined) {
       const URL = process.env.REACT_APP_API_URL;

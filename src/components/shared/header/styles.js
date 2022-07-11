@@ -11,10 +11,30 @@ const Container = styled.header`
 
   ion-icon {
     font-size: 60px;
+    cursor: pointer;
   }
 
   h1 {
     font: normal 400 52px "Saira Stencil One", cursive;
+  }
+
+  span {
+    position: relative;
+  }
+
+  div {
+    width: 25px;
+    height: 25px;
+    border-radius: 20px;
+    background-color: red;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    font: normal 400 15px "Raleway", sans-serif;
   }
 
   @media (max-width: 420px) {
