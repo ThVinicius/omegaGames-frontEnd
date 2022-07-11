@@ -285,10 +285,6 @@ const Button = styled.button`
 `;
 
 const Final = styled.div`
-  a {
-    width: 100%;
-    color: inherit;
-  }
   width: 100%;
   height: 70px;
   display: flex;
@@ -316,11 +312,28 @@ const Final = styled.div`
     font-style: normal;
     font-weight: 400;
     font-size: 24px;
-    line-height: 38px;
+
     text-align: center;
     color: #ffffff;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     cursor: pointer;
+  }
+
+  @media (max-width: 420px) {
+    span {
+      font: normal 700 15px "Raleway", sans-serif;
+      padding: 5px;
+
+      border-radius: 5px;
+      margin-right: 10px;
+      margin-left: 10px;
+    }
+
+    button {
+      width: 100px;
+      height: 54px;
+      font-size: 15px;
+    }
   }
 `;
 
