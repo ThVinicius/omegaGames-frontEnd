@@ -10,8 +10,9 @@ export default function LibScreen() {
     <Container>
       <Header />
       <Content>
-        {user.purchases.map(({ _id, name, url, userRating }, index) => (
+        {user.purchases.map(({ _id, name, url, userRating, date }, index) => (
           <UserGame
+            date={date}
             _id={_id}
             name={name}
             url={url}

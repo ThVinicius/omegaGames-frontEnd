@@ -3,7 +3,7 @@ import styled from "styled-components";
 const Container = styled.div`
   width: 48%;
   height: 180px;
-  padding: 10px;
+  padding: 7px;
   display: flex;
   background-color: #ffffff;
   box-shadow: rgba(40, 41, 61, 0.08) 0px 0px 1px,
@@ -24,9 +24,17 @@ const Container = styled.div`
   }
 
   h1 {
-    font: normal 700 25px "Raleway", sans-serif;
+    font: normal 700 20px "Raleway", sans-serif;
     color: #000000;
     text-align: center;
+  }
+
+  h3 {
+    font: normal 700 15px "Raleway", sans-serif;
+
+    span {
+      color: green;
+    }
   }
 `;
 

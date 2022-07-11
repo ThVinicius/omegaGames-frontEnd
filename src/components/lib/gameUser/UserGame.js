@@ -6,7 +6,7 @@ import { arithmeticMeanRating } from "../../../shared/functions";
 import { ratingGame, loadingSpinner, disabledRating } from "./functions";
 import { Container, RatingBox } from "./styles";
 
-export default function UserGame({ _id, name, url, userRating }) {
+export default function UserGame({ _id, name, url, userRating, date }) {
   const { user } = useAuth();
   const [input] = useState({ value: userRating });
   const [loading, setLoading] = useState({ value: false, spinner: undefined });
@@ -45,6 +45,9 @@ export default function UserGame({ _id, name, url, userRating }) {
       <img src={url} alt="jogo" />
       <div>
         <h1>{name}</h1>
+        <h3>
+          Data da compra: <span>{date}</span>
+        </h3>
         <RatingBox>
           <h2>Sua avaliação: </h2>
           <i>
