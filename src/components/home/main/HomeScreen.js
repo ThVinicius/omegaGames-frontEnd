@@ -107,7 +107,7 @@ export default function HomeScreen() {
       );
 
     return (
-      <>
+      <BoxGames>
         <SelectBox>
           <span>Ordenar Por:</span>
           <select value={filter.value} onChange={e => hanleChangeFilter(e)}>
@@ -121,22 +121,20 @@ export default function HomeScreen() {
             <option value="5">Alfabética [z-a]</option>
           </select>
         </SelectBox>
-        <BoxGames>
-          {games.value.map(
-            ({ rating, ratingValue, url, price, name, _id }, index) => (
-              <Games
-                rating={rating}
-                ratingValue={ratingValue}
-                name={name}
-                url={url}
-                price={price}
-                _id={_id}
-                key={index}
-              />
-            )
-          )}
-        </BoxGames>
-      </>
+        {games.value.map(
+          ({ rating, ratingValue, url, price, name, _id }, index) => (
+            <Games
+              rating={rating}
+              ratingValue={ratingValue}
+              name={name}
+              url={url}
+              price={price}
+              _id={_id}
+              key={index}
+            />
+          )
+        )}
+      </BoxGames>
     );
   }
 

@@ -37,7 +37,7 @@ const BoxGames = styled.div`
 
 const SelectBox = styled.div`
   width: 100%;
-  height: 100px;
+  height: 45px;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -48,7 +48,7 @@ const SelectBox = styled.div`
     border: none;
     border-radius: 5px;
     width: 25%;
-    height: 80%;
+    height: 35px;
     text-align: center;
     font: normal 700 18px "Raleway", sans-serif;
     box-shadow: rgba(40, 41, 61, 0.08) 0px 0px 1px,
@@ -61,7 +61,7 @@ const SelectBox = styled.div`
   }
 
   span {
-    font: normal 700 15px "Raleway", sans-serif;
+    font: normal 700 18px "Raleway", sans-serif;
   }
 `;
 
