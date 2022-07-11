@@ -28,21 +28,28 @@ function NavBarCart() {
     if (loading.value === true) return;
     loading.value = true;
 
-    const URL = `${process.env.REACT_APP_API_URL}/remove/${user.cart[index]._id}`;
-    const config = { headers: { Authorization: `Bearer ${user.token}` } };
+    cart.splice(index, 1);
 
-    const promise = axios.post(URL, {}, config);
+    if (user.token !== undefined) {
+      const URL = `${process.env.REACT_APP_API_URL}/remove/${user.cart[index]._id}`;
+      const config = { headers: { Authorization: `Bearer ${user.token}` } };
 
-    promise.then(() => {
+      const promise = axios.post(URL, {}, config);
+
+      promise.then(() => {
+        loading.value = false;
+
+        setUser({ ...user });
+      });
+
+      promise.catch(err => {
+        loading.value = false;
+        console.log(err);
+      });
+    } else {
       loading.value = false;
-      cart.splice(index, 1);
       setUser({ ...user });
-    });
-
-    promise.catch(err => {
-      loading.value = false;
-      console.log(err);
-    });
+    }
   }
 
   function finalPurchase() {
@@ -74,6 +81,45 @@ function NavBarCart() {
     return setNavbarCart({ ...navbarCart, value: false });
   }
 
+  function emptyCart() {
+    if (user.cart.length <= 0) {
+      return (
+        <>
+          <EmptyCart>
+            <h1>Ops! seu carrinho está vazio</h1>
+          </EmptyCart>
+          <Final>
+            <button
+              onClick={() => setNavbarCart({ ...navbarCart, value: false })}
+            >
+              Voltar a comprar
+            </button>
+          </Final>
+        </>
+      );
+    }
+
+    return (
+      <>
+        <Cart>{renderCart()}</Cart>
+        {user.token !== undefined ? (
+          <Final>
+            <button onClick={finalPurchase}>Finalizar Compra</button>
+          </Final>
+        ) : (
+          <Final>
+            <Link
+              to="/login"
+              onClick={() => setNavbarCart({ ...navbarCart, value: false })}
+            >
+              <button>Finalizar Compra</button>
+            </Link>
+          </Final>
+        )}
+      </>
+    );
+  }
+
   return (
     (user === undefined || user !== undefined) && (
       <Container>
@@ -83,21 +129,7 @@ function NavBarCart() {
             <ion-icon name="cart-outline"></ion-icon>
             <Text>Seus Produtos</Text>
           </Top>
-          <Cart>{renderCart()}</Cart>
-          {user.token !== undefined ? (
-            <Final>
-              <button onClick={finalPurchase}>Finalizar Compra</button>
-            </Final>
-          ) : (
-            <Final>
-              <Link
-                to="/login"
-                onClick={() => setNavbarCart({ ...navbarCart, value: false })}
-              >
-                <button>Finalizar Compra</button>
-              </Link>
-            </Final>
-          )}
+          {emptyCart()}
         </Content>
       </Container>
     )
@@ -262,6 +294,23 @@ const Final = styled.div`
     text-align: center;
     color: #ffffff;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+  }
+`;
+
+const EmptyCart = styled.div`
+  width: 80%;
+  height: 80%;
+  background-color: #ffffff;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: rgba(40, 41, 61, 0.08) 0px 0px 1px,
+    rgba(96, 97, 112, 0.16) 0px 0.5px 2px;
+
+  h1 {
+    font: normal 700 20px "Raleway", sans-serif;
   }
 `;
 

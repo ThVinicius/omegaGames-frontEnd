@@ -44,9 +44,16 @@ export default function HomeScreen() {
         const config = { headers: { Authorization: `Bearer ${user.token}` } };
 
         const { data: res } = await get(`${URL}/user`, config);
-        const { email, name, picture, cart, purchases } = res;
+        let { email, name, picture, cart, purchases } = res;
 
         if (user.cart.length > 0) {
+          user.cart = user.cart.filter(({ _id }) => {
+            for (const gamePurchase of purchases) {
+              if (gamePurchase._id === _id) return false;
+            }
+            return true;
+          });
+
           setUser({ ...user, email, name, picture, purchases });
         } else {
           setUser({ ...user, email, name, picture, cart, purchases });

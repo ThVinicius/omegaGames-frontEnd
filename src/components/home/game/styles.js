@@ -43,7 +43,7 @@ const Content = styled.div`
   }
 
   h1 {
-    font: normal 400 26px "Saira Stencil One", cursive;
+    font: normal 400 23px "Saira Stencil One", cursive;
     color: #ffffff;
     text-align: center;
   }
