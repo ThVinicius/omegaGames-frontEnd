@@ -1,6 +1,6 @@
 import { ThreeDots } from "react-loader-spinner";
 
-function verifyGame(user, _id, addCart) {
+function verifyGame(user, _id, addCart, loading) {
   const findPurchases = user.purchases.some(item => _id === item._id);
 
   if (findPurchases) {
@@ -13,13 +13,13 @@ function verifyGame(user, _id, addCart) {
     return <h6>Aguardando compra</h6>;
   }
 
-  return <button onClick={addCart}>Adicionar ao carrinho</button>;
+  return <button onClick={addCart}>{spinner(loading)}</button>;
 }
 
-// function spinner(loading) {
-//   if (loading.value === false) return "Adicionar ao carrinho";
+function spinner(loading) {
+  if (loading.value === false) return "Adicionar ao carrinho";
 
-//   return <ThreeDots color="#FFFFFF" height={20} width={99} />;
-// }
+  return <ThreeDots color="#FFFFFF" height={20} width={99} />;
+}
 
 export { verifyGame };

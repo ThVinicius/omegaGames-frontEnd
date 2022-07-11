@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useAuth } from "../../../context/auth";
 import Rating from "@mui/material/Rating";
 import { post } from "axios";
@@ -9,11 +9,11 @@ import { Container, Content } from "./styles";
 export default function Game({ rating, ratingValue, game, setGame }) {
   const { name, url, price, _id } = game;
   const { user, setUser } = useAuth();
-  // const [loading, setLoading] = useState({ value: false });
+  const [loading] = useState({ value: false });
 
-  function addCart() {
-    // if (loading.value === true) return;
-    // loading.value = true;
+  async function addCart() {
+    if (loading.value === true) return;
+    loading.value = true;
 
     setUser({
       ...user,
@@ -27,24 +27,22 @@ export default function Game({ rating, ratingValue, game, setGame }) {
 
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
 
-      const promise = post(`${URL}/cart/${_id}`, body, config);
-
-      promise
-        .then(() => {
-          // loading.value = false;
-        })
-        .catch(() => {
-          // loading.value = false;
-        });
+      try {
+        await post(`${URL}/cart/${_id}`, body, config);
+      } catch (error) {
+        console.log(error);
+      }
     }
+
+    loading.value = false;
     setGame(undefined);
   }
 
-  // function disabledButton() {
-  //   if (loading.value === false) return setGame(undefined);
+  function disabledButton() {
+    if (loading.value === false) return setGame(undefined);
 
-  //   return;
-  // }
+    return;
+  }
 
   return (
     <Container>
@@ -64,8 +62,8 @@ export default function Game({ rating, ratingValue, game, setGame }) {
           <h2>R$ {priceBRL(price)}</h2>
         </div>
         <div>
-          <button onClick={() => setGame(undefined)}>Cancelar</button>
-          {verifyGame(user, _id, addCart)}
+          <button onClick={disabledButton}>Cancelar</button>
+          {verifyGame(user, _id, addCart, loading)}
         </div>
       </Content>
     </Container>
