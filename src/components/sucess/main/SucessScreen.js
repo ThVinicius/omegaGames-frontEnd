@@ -13,8 +13,8 @@ export default function SucessScreen() {
       <Content>
         <h1>Compra realizada com sucesso!</h1>
         <GamesContainer>
-          {state.map(({ url, price }) => (
-            <PurchasedGames url={url} price={price} />
+          {state.map(({ url, price }, index) => (
+            <PurchasedGames url={url} price={price} key={index} />
           ))}
         </GamesContainer>
       </Content>
