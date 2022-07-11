@@ -31,6 +31,10 @@ export default function UserGame({ _id, name, url, userRating }) {
 
       rating.value = arithmeticMeanRating(data.rating);
 
+      if (initialValue === 0) {
+        rating.total = rating.total + 1;
+      }
+
       setLoading({ ...loading, value: false, spinner: false });
     } catch (error) {
       console.log(error);

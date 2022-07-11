@@ -10,7 +10,7 @@ export default function Game({ rating, ratingValue, game, setGame }) {
   const { user } = useAuth();
 
   function addCart() {
-    user.cart.push({ name, url, price, _id });
+    user.cart.push({ name, url, price, _id, userRating: 0 });
 
     if (user.token !== undefined) {
       const URL = process.env.REACT_APP_API_URL;

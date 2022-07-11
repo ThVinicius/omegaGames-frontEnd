@@ -134,11 +134,13 @@ export default function HomeScreen() {
   }
 
   return (
-    <Container>
-      <App>
-        <Header />
-        <Content>{loading()}</Content>
-      </App>
-    </Container>
+    (user === null || user !== null) && (
+      <Container>
+        <App>
+          <Header />
+          <Content>{loading()}</Content>
+        </App>
+      </Container>
+    )
   );
 }

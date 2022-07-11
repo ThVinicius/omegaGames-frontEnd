@@ -13,8 +13,8 @@ export const AuthProvider = props => {
     games: undefined
   });
 
-  const [navbarCart, setNavbarCart] = useState(false);
-  const [navbarMenu, setNavbarMenu] = useState(false);
+  const [navbarCart, setNavbarCart] = useState({ value: false });
+  const [navbarMenu, setNavbarMenu] = useState({ value: false });
 
   return (
     <AuthContext.Provider

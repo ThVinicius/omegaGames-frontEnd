@@ -66,7 +66,7 @@ export default function Form() {
       .then(() => {
         alert("Cadastro realizado com sucesso!");
 
-        navigate("/");
+        navigate("/login");
       })
       .catch(res => {
         setLoading(false);
