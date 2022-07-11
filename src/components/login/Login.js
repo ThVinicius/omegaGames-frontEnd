@@ -34,7 +34,11 @@ function Login() {
     });
 
     promise.catch(err => {
-      console.log(err);
+      if (err.response.status === 404) {
+        alert("email ou senha incorreta");
+      } else if (err.response.status === 422) {
+        alert("os dados foram enviados de maneira incorreta!");
+      }
       setLoading(false);
     });
   }
@@ -97,11 +101,12 @@ const Container = styled.div`
     margin-bottom: 32px;
   }
   input {
-    width: 80%;
+    width: 50vw;
     height: 58px;
     background: #a328d6;
     border: 1px solid #d5d5d5;
     border-radius: 5px;
+    padding: 0 15px;
     margin-bottom: 13px;
     background: #ffffff;
     font-family: "Raleway";
@@ -112,11 +117,13 @@ const Container = styled.div`
     color: #000000;
   }
   input::placeholder {
-    padding-left: 10px;
+    font: normal 400 20px "Raleway", sans-serif;
+    color: #000000;
+    line-height: 23px;
   }
   .button {
-    width: 80%;
-    height: 45px;
+    width: 50vw;
+    height: 46px;
     padding: 10px;
     text-align: center;
     background: #a328d6;
@@ -133,9 +140,19 @@ const Container = styled.div`
     font-family: "Raleway";
     font-style: normal;
     font-weight: 700;
-    font-size: 15px;
+    font-size: 20px;
     line-height: 18px;
     color: #ffffff;
+  }
+
+  @media (max-width: 420px) {
+    input {
+      width: 87.6vw;
+    }
+
+    p {
+      font-size: 17px;
+    }
   }
 `;
 

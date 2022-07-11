@@ -81,6 +81,14 @@ function NavBarCart() {
     return setNavbarCart({ ...navbarCart, value: false });
   }
 
+  function totalPrice() {
+    let total = 0;
+    for (const { price } of user.cart) {
+      total += price;
+    }
+    return total.toFixed(2).replace(".", ",");
+  }
+
   function emptyCart() {
     if (user.cart.length <= 0) {
       return (
@@ -104,6 +112,7 @@ function NavBarCart() {
         <Cart>{renderCart()}</Cart>
         {user.token !== undefined ? (
           <Final>
+            <span>R$ {totalPrice()}</span>
             <button onClick={finalPurchase}>Finalizar Compra</button>
           </Final>
         ) : (
@@ -112,6 +121,7 @@ function NavBarCart() {
               to="/login"
               onClick={() => setNavbarCart({ ...navbarCart, value: false })}
             >
+              <span>R$ {totalPrice()}</span>
               <button>Finalizar Compra</button>
             </Link>
           </Final>
@@ -275,11 +285,27 @@ const Button = styled.button`
 `;
 
 const Final = styled.div`
+  a {
+    width: 100%;
+    color: inherit;
+  }
   width: 100%;
   height: 70px;
   display: flex;
-  align-items: center;
   justify-content: center;
+
+  align-items: center;
+
+  span {
+    font: normal 700 25px "Raleway", sans-serif;
+    padding: 10px;
+    background-color: purple;
+    border-radius: 10px;
+    margin-right: 50px;
+    margin-left: 50px;
+    color: #ffffff;
+  }
+
   button {
     width: 232px;
     height: 54px;
@@ -311,6 +337,7 @@ const EmptyCart = styled.div`
 
   h1 {
     font: normal 700 20px "Raleway", sans-serif;
+    text-align: center;
   }
 `;
 

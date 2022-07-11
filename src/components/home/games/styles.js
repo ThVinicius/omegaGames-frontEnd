@@ -16,8 +16,12 @@ const Container = styled.div`
 
   img {
     width: 120px;
-    height: 175px;
+    height: 148px;
     border-radius: 10px;
+  }
+
+  span {
+    font: normal 400 18px "Raleway", sans-serif;
   }
 
   div {
@@ -36,12 +40,16 @@ const Container = styled.div`
       width: 106px;
       height: 180px;
     }
+
+    span {
+      font: normal 400 15px "Raleway", sans-serif;
+    }
     img {
       width: 90px;
-      height: 133px;
+      height: 117px;
     }
     p {
-      font: normal 700 15px "Raleway", sans-serif;
+      font: normal 700 13px "Raleway", sans-serif;
     }
   }
 `;

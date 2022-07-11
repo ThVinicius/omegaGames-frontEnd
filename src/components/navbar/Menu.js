@@ -48,14 +48,18 @@ function NavBarMenu() {
                 to="/login"
                 onClick={() => setNavbarMenu({ ...navbarMenu, value: false })}
               >
-                <Text className="login">Faça Login</Text>
+                <Text className="login">
+                  <span>Faça Login</span>
+                </Text>
               </Link>
             </Top>
             <Link
               to="/register"
               onClick={() => setNavbarMenu({ ...navbarMenu, value: false })}
             >
-              <Text className="register">ou Cadastre-se</Text>
+              <Text className="register">
+                <span> ou Cadastre-se</span>
+              </Text>
             </Link>
           </Content>
         )}
@@ -139,6 +143,12 @@ const Text = styled.span`
   line-height: 39px;
   text-align: center;
   color: #ffffff;
+
+  span {
+    padding: 20px;
+    background-color: #2eb2ff;
+    border-radius: 5px;
+  }
 `;
 
 const Button = styled.button`

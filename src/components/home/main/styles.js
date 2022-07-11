@@ -63,6 +63,25 @@ const SelectBox = styled.div`
   span {
     font: normal 700 18px "Raleway", sans-serif;
   }
+
+  @media (max-width: 420px) {
+    padding-right: 10px;
+    gap: 20px;
+
+    select {
+      width: 50%;
+
+      font: normal 700 14px "Raleway", sans-serif;
+    }
+
+    option {
+      font: normal 700 14px "Raleway", sans-serif;
+    }
+
+    span {
+      font: normal 700 14px "Raleway", sans-serif;
+    }
+  }
 `;
 
 export { Container, App, Content, BoxGames, SelectBox };

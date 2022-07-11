@@ -36,6 +36,14 @@ const Container = styled.div`
       color: green;
     }
   }
+
+  @media (max-width: 420px) {
+    width: 100%;
+
+    img {
+      width: 28%;
+    }
+  }
 `;
 
 const RatingBox = styled.div`

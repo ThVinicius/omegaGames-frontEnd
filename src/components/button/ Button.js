@@ -12,7 +12,7 @@ function Button({ text, type, destiny, action, loading }) {
 }
 
 const Container = styled.button`
-  width: 45vh;
+  width: 50vh;
   height: 46px;
   padding: 10px;
   text-align: center;
@@ -28,6 +28,10 @@ const Container = styled.button`
   text-decoration-line: none;
   &:hover {
     cursor: pointer;
+  }
+
+  @media (max-width: 420px) {
+    width: 87.6vw;
   }
 `;
 
