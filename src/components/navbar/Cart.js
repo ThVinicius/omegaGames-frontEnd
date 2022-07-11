@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
+import { ThreeDots } from "react-loader-spinner";
+
 import { useAuth } from "../../context/auth";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
@@ -89,6 +91,12 @@ function NavBarCart() {
     return total.toFixed(2).replace(".", ",");
   }
 
+  function loadingSpinner() {
+    if (loading.value === false) return "Finalizar Compra";
+
+    return <ThreeDots color="#FFFFFF" height={20} width={99} />;
+  }
+
   function emptyCart() {
     if (user.cart.length <= 0) {
       return (
@@ -113,7 +121,7 @@ function NavBarCart() {
         {user.token !== undefined ? (
           <Final>
             <span>R$ {totalPrice()}</span>
-            <button onClick={finalPurchase}>Finalizar Compra</button>
+            <button onClick={finalPurchase}>{loadingSpinner()}</button>
           </Final>
         ) : (
           <Final>
@@ -122,7 +130,7 @@ function NavBarCart() {
               onClick={() => setNavbarCart({ ...navbarCart, value: false })}
             >
               <span>R$ {totalPrice()}</span>
-              <button>Finalizar Compra</button>
+              <button>{loadingSpinner()}</button>
             </Link>
           </Final>
         )}
@@ -313,7 +321,6 @@ const Final = styled.div`
     font-weight: 400;
     font-size: 24px;
 
-    text-align: center;
     color: #ffffff;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     cursor: pointer;
