@@ -30,8 +30,6 @@ function NavBarCart() {
     if (loading.value === true) return;
     loading.value = true;
 
-    cart.splice(index, 1);
-
     if (user.token !== undefined) {
       const URL = `${process.env.REACT_APP_API_URL}/remove/${user.cart[index]._id}`;
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
@@ -52,6 +50,7 @@ function NavBarCart() {
       loading.value = false;
       setUser({ ...user });
     }
+    cart.splice(index, 1);
   }
 
   function finalPurchase() {
